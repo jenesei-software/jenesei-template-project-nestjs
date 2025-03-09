@@ -6,7 +6,13 @@ import server from './config/server';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true, load: [server, database] })],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [server, database],
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
