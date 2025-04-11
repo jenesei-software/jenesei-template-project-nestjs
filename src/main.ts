@@ -1,23 +1,25 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { Logger, ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app/app.module';
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import * as dotenv from 'dotenv';
+import { enableHttps } from './app/settings/enable-https';
+import { appSettings } from './app/settings/app-settings';
 
+dotenv.config();
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = enableHttps();
+  const app = await NestFactory.create(AppModule, { httpsOptions });
   const configService = app.get<ConfigService>(ConfigService);
-  const PORT = configService.getOrThrow<number>('server.port');
   const HOST = configService.getOrThrow<string>('server.host');
-  const CONTEXT_PATH = configService.getOrThrow<string>('server.contextPath');
-  app.useGlobalPipes(new ValidationPipe());
-  app.setGlobalPrefix(CONTEXT_PATH);
-  const config = new DocumentBuilder().setTitle('Template app').build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup(`${CONTEXT_PATH}/swagger`, app, document);
-
+  const PORT = configService.getOrThrow<number>('server.port');
+  const CONTEXT_API = configService.getOrThrow<string>('server.context.path');
+  appSettings(app, configService);
   await app.listen(PORT, HOST, () => {
-    Logger.log(`Server started on http://${HOST}:${PORT}`, 'MAIN');
+    Logger.log(
+      `Server started on ${httpsOptions ? 'https' : 'http'}://${HOST}:${PORT}/${CONTEXT_API}`,
+      'MAIN',
+    );
   });
 }
 
