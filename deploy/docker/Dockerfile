@@ -1,0 +1,38 @@
+# ==================== BUILD STAGE ====================
+FROM node:22-alpine AS builder
+
+RUN apk add --no-cache python3 make g++
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+# Удаляем devDependencies после сборки
+RUN npm prune --production
+
+# ==================== PRODUCTION STAGE ====================
+FROM node:22-alpine AS production
+
+# Устанавливаем tzdata для работы с временными зонами
+RUN apk add --no-cache tzdata
+
+WORKDIR /app
+
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
+COPY --from=build /app/resource ./resource
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV TZ=UTC
+
+EXPOSE $PORT
+
+CMD [ "sh", "-c", "npm run start:prod" ]
