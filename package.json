@@ -1,6 +1,6 @@
 {
   "name": "nest-template",
-  "version": "1.2.14",
+  "version": "1.2.16",
   "description": "Production-ready NestJS starter template with TypeScript, Swagger, Docker, CI/CD, and best practices. Includes authentication, database setup, config management, and testing utilities.",
   "author": "Tazdinger",
   "private": true,
