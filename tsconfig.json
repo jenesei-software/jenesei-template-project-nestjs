@@ -16,6 +16,16 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@errors/*": ["src/common/errors/*"],
+      "@services/*": ["src/services/*"],
+      "@modules/*": ["src/modules/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@configurations/*": ["src/common/configurations/*"],
+      "@common/*": ["src/common/*"],
+      "@settings/*": ["src/app/settings/*"],
+      "@env/*": ["src/app/settings/env/*"]
+    }
   }
 }
