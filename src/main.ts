@@ -9,6 +9,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const httpsOptions = enableHttps();
   const app = await NestFactory.create(AppModule, { httpsOptions });
   const configService = app.get<ConfigService>(ConfigService);
@@ -18,11 +19,10 @@ async function bootstrap() {
   const DOMAIN = configService.getOrThrow<string>('server.domain');
   appSettings(app, configService);
   await app.listen(PORT, HOST, () => {
-    Logger.log(`App started with domain ${Color.FgYellow}${DOMAIN}`, 'Bootstrap');
-    Logger.log(`Swagger url ${Color.FgYellow}${CONTEXT_API}/swagger`, 'Bootstrap');
-    Logger.log(
+    logger.log(`App started with domain ${Color.FgYellow}${DOMAIN}`);
+    logger.log(`Swagger url ${Color.FgYellow}${CONTEXT_API}/swagger`);
+    logger.log(
       `Server started on ${Color.FgYellow}${httpsOptions ? 'https' : 'http'}://${HOST}:${PORT}/${CONTEXT_API}`,
-      'Bootstrap',
     );
   });
 }

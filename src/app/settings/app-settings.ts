@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
 import { swaggerSetup } from './swagger-setup';
 import { enableCors } from './enable-cors';
-import { CustomExceptionFilter } from '@configurations/http-exception.filter';
+import { CustomExceptionFilter } from '@common/filters/http-exception.filter';
 
 export function appSettings(app: INestApplication, configService: ConfigService) {
   const CONTEXT_API = configService.getOrThrow<string>('server.context.path');
