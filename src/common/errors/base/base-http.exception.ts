@@ -14,7 +14,7 @@ export abstract class BaseHttpException {
   code: string = ExceptionCode.INTERNAL_SERVER_ERROR;
 
   @ApiProperty({
-    description: 'Текстовое представление ошибки',
+    description: 'HTTP код ошибки',
     example: ExceptionCode.INTERNAL_SERVER_ERROR,
   })
   error: string = ExceptionCode.INTERNAL_SERVER_ERROR;

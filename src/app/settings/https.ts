@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { readFileSync } from 'node:fs';
-import { isEnvFlagEnabled } from 'src/common/utils/env.utils';
+import { isEnvFlagEnabled } from '@common/utils/env.util';
 
 export function enableHttps(): { key: Buffer; cert: Buffer } | undefined {
   const useHttps = isEnvFlagEnabled(process.env.HTTPS_ENABLED);

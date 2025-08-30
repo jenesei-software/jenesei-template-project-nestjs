@@ -2,14 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Color } from '@common/enums/colors';
-import { enableHttps } from '@settings/enable-https';
+import { enableHttps } from '@settings/https';
 import { appSettings } from '@settings/app-settings';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
+
   const httpsOptions = enableHttps();
   const app = await NestFactory.create(AppModule, { httpsOptions });
   const configService = app.get<ConfigService>(ConfigService);
@@ -17,12 +17,14 @@ async function bootstrap() {
   const PORT = configService.getOrThrow<number>('server.port');
   const CONTEXT_API = configService.getOrThrow<string>('server.context.path');
   const DOMAIN = configService.getOrThrow<string>('server.domain');
+
   appSettings(app, configService);
+
   await app.listen(PORT, HOST, () => {
-    logger.log(`App started with domain ${Color.FgYellow}${DOMAIN}`);
-    logger.log(`Swagger url ${Color.FgYellow}${CONTEXT_API}/swagger`);
+    logger.log(`App started with domain ${DOMAIN}`);
+    logger.log(`Swagger url ${CONTEXT_API}/swagger`);
     logger.log(
-      `Server started on ${Color.FgYellow}${httpsOptions ? 'https' : 'http'}://${HOST}:${PORT}/${CONTEXT_API}`,
+      `Server started on ${httpsOptions ? 'https' : 'http'}://${HOST}:${PORT}/${CONTEXT_API}`,
     );
   });
 }

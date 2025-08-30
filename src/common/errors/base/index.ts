@@ -1,11 +1,11 @@
 import { BadRequestException } from './bad-request.exception';
 import { ForbiddenException } from './forbidden.exception';
-import { InterServerException } from './internal-server.exception';
+import { InternalServerErrorException } from './internal-server-error.exception';
 import { NotFoundException } from './not-found.exception';
 import { UnauthorizedException } from './unauthorized.exception';
 
 export const BaseExceptions = [
-  InterServerException,
+  InternalServerErrorException,
   ForbiddenException,
   NotFoundException,
   UnauthorizedException,
@@ -13,7 +13,7 @@ export const BaseExceptions = [
 ];
 
 export {
-  InterServerException,
+  InternalServerErrorException as InterServerException,
   ForbiddenException,
   NotFoundException,
   UnauthorizedException,

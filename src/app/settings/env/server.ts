@@ -1,4 +1,4 @@
-import { isEnvFlagEnabled } from 'src/common/utils/env.utils';
+import { isEnvFlagEnabled } from '@common/utils/env.util';
 
 export default () => ({
   server: {
@@ -11,6 +11,13 @@ export default () => ({
     ssl: {
       key: process.env.SSL_KEY || undefined,
       cert: process.env.SSL_CERT || undefined,
+    },
+    basic: {
+      auth: {
+        enabled: process.env.BASIC_AUTH_ENABLED ?? false,
+        username: process.env.BASIC_AUTH_USERNAME,
+        password: process.env.BASIC_AUTH_PASSWORD,
+      },
     },
   },
 });
