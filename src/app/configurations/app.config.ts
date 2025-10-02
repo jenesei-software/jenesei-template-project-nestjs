@@ -1,12 +1,12 @@
+import { enableBasicAuth } from './basic-auth.config';
+import { corsConfig } from './cors.config';
+import { swaggerSetup as swaggerConfig } from './swagger.config';
 import { CustomExceptionFilter } from '@common/filters/http-exception.filter';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { swaggerSetup } from './swagger-setup';
 import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
-import { enableCors } from './cors';
-import { enableBasicAuth } from './basic-auth';
 
-export function appSettings(app: INestApplication, configService: ConfigService) {
+export function appConfig(app: INestApplication, configService: ConfigService) {
   const CONTEXT_API = configService.getOrThrow<string>('server.context.path');
 
   app.useGlobalPipes(
@@ -21,6 +21,6 @@ export function appSettings(app: INestApplication, configService: ConfigService)
   app.useGlobalFilters(new CustomExceptionFilter());
 
   enableBasicAuth(configService);
-  enableCors(app, configService);
-  swaggerSetup(app, configService);
+  corsConfig(app, configService);
+  swaggerConfig(app, configService);
 }

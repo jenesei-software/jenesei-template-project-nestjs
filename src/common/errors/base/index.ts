@@ -13,7 +13,7 @@ export const BaseExceptions = [
 ];
 
 export {
-  InternalServerErrorException as InterServerException,
+  InternalServerErrorException,
   ForbiddenException,
   NotFoundException,
   UnauthorizedException,

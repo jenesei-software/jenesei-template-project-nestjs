@@ -1,24 +1,24 @@
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { Logger } from '@nestjs/common';
+import { ConsoleLogger, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { enableHttps } from '@settings/https';
-import { appSettings } from '@settings/app-settings';
-import * as dotenv from 'dotenv';
+import { NestFactory } from '@nestjs/core';
+import { appConfig } from '@settings/app.config';
+import { httpsConfig } from '@settings/https.config';
+import { loggerConfig } from '@settings/logger.config';
 
-dotenv.config();
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-
-  const httpsOptions = enableHttps();
-  const app = await NestFactory.create(AppModule, { httpsOptions });
+  console.log(process.env.PORT);
+  
+  const httpsOptions = httpsConfig();
+  const app = await NestFactory.create(AppModule, { httpsOptions, logger: loggerConfig() });
   const configService = app.get<ConfigService>(ConfigService);
   const HOST = configService.getOrThrow<string>('server.host');
   const PORT = configService.getOrThrow<number>('server.port');
   const CONTEXT_API = configService.getOrThrow<string>('server.context.path');
   const DOMAIN = configService.getOrThrow<string>('server.domain');
 
-  appSettings(app, configService);
+  appConfig(app, configService);
 
   await app.listen(PORT, HOST, () => {
     logger.log(`App started with domain ${DOMAIN}`);

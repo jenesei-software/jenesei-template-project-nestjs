@@ -27,8 +27,8 @@
       "@repositories/*": ["src/repositories/*"],
       "@configurations/*": ["src/common/configurations/*"],
       "@common/*": ["src/common/*"],
-      "@settings/*": ["src/app/settings/*"],
-      "@env/*": ["src/app/settings/env/*"]
+      "@settings/*": ["src/app/configurations/*"],
+      "@env/*": ["src/app/env/*"]
     }
   }
 }

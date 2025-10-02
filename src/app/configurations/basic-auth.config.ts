@@ -1,5 +1,5 @@
+import { users } from './basic-users';
 import { ConfigService } from '@nestjs/config';
-import { users } from './users';
 
 export function enableBasicAuth(configService: ConfigService): void {
   const isEnable = configService.get<boolean>('server.basic.auth.enable') ?? false;

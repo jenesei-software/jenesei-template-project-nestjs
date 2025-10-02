@@ -8,5 +8,5 @@ export class DetailedException {
     description: 'Объяснения причины ошибки',
     example: 'username не может быть меньше 4 символов',
   })
-  cause: string | string[];
+  cause: string;
 }

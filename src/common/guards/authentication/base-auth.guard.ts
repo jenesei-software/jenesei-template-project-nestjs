@@ -1,6 +1,6 @@
 import { UnauthorizedException } from '@errors/base';
 import { CanActivate, ExecutionContext } from '@nestjs/common';
-import { users } from '@settings/users';
+import { users } from '@settings/basic-users';
 import { Request, Response } from 'express';
 
 export class BaseAuthGuard implements CanActivate {
