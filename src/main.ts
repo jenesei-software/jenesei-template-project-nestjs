@@ -8,7 +8,6 @@ import { loggerConfig } from '@settings/logger.config';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  console.log(process.env.PORT);
   
   const httpsOptions = httpsConfig();
   const app = await NestFactory.create(AppModule, { httpsOptions, logger: loggerConfig() });
