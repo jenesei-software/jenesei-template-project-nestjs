@@ -1,13 +1,16 @@
-import { CustomModulesRegistry } from '@modules';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { envConfig } from '@settings/env.config';
-import { AppEnv } from 'src/app/env';
+
+import { AppEnv } from '@/app/env';
+import { envConfig } from '@/app/setup';
+import { InfrastructureModules } from '@/infra';
+import { DomainModules } from '@/modules';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [...AppEnv], envFilePath: envConfig }),
-    ...CustomModulesRegistry,
+    ...InfrastructureModules,
+    ...DomainModules,
   ],
 })
 export class AppModule {}

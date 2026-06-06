@@ -6,11 +6,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "target": "es2023",
     "sourceMap": true,
+    "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
+    "incremental": false,
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
@@ -18,17 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@errors/*": ["src/common/errors/*"],
-      "@services/*": ["src/services/*"],
-      "@modules/*": ["src/modules/*"],
-      "@modules": ["src/modules"],
-      "@models": ["src/models/*"],
-      "@controllers/*": ["src/controllers/*"],
-      "@repositories/*": ["src/repositories/*"],
-      "@configurations/*": ["src/common/configurations/*"],
-      "@common/*": ["src/common/*"],
-      "@settings/*": ["src/app/configurations/*"],
-      "@env/*": ["src/app/env/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

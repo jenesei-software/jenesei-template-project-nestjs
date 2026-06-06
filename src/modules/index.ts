@@ -1,3 +1,4 @@
-import { DatabasesModule } from './databases.module';
+import { CliModule } from './cli';
+import { DummyModule } from './dummy';
 
-export const CustomModulesRegistry = [DatabasesModule];
+export const DomainModules = [CliModule, DummyModule];
