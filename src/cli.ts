@@ -19,11 +19,12 @@ async function bootstrap() {
   const payload = parseArgsToPayload(rawParams);
 
   // Конфигурация (можно переопределить через переменные окружения)
-  const baseUrl = process.env.CLI_SERVICE_URL || 'http://localhost:3000';
+  const baseUrl = process.env.CLI_SERVICE_URL || 'http://localhost';
+  const port = process.env.PORT || '3000';
   const prefix = process.env.CONTEXT_API || '';
 
   const cleanPrefix = prefix ? `${prefix}/` : '';
-  const targetUrl = `${baseUrl}/${cleanPrefix}cli/execute`;
+  const targetUrl = `${baseUrl}:${port}/${cleanPrefix}cli/execute`;
 
   const dto = {
     command: commandName,
