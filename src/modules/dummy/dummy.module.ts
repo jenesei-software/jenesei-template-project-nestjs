@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { DummyHttpAdapter, DummyCliAdapter, DummyRepository } from './adapters';
+import { DummyCliAdapter, DummyHttpAdapter, DummyRepository } from './adapters';
 import { DummyService } from './domain';
 import { DUMMY_TOKEN } from './ports';
 

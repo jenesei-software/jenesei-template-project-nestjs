@@ -1,4 +1,4 @@
-import { SetMetadata, applyDecorators, Injectable } from '@nestjs/common';
+import { applyDecorators, Injectable, SetMetadata } from '@nestjs/common';
 
 export const CLI_COMMAND_METADATA_KEY = 'cli:command_metadata';
 

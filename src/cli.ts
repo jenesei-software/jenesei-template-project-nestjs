@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { join } from 'path';
-import { loadEnvFile } from 'process';
+import { join } from 'node:path';
+import { loadEnvFile } from 'node:process';
 
 async function bootstrap() {
   // process.argv[0] — это путь к node

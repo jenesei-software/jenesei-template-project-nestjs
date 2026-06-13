@@ -1,4 +1,4 @@
-import { applyDecorators, Type } from '@nestjs/common';
+import { applyDecorators, type Type } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';

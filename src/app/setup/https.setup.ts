@@ -1,5 +1,4 @@
-import { readFileSync } from 'fs';
-
+import { readFileSync } from 'node:fs';
 import { Logger } from '@nestjs/common';
 
 import { isEnvFlagEnabled } from '@/common/utils';
@@ -14,7 +13,7 @@ export function httpsConfig(): { key: Buffer; cert: Buffer } | undefined {
       };
     } catch (e: unknown) {
       Logger.error(`Error loading SSL certificates: ${e}`, 'EnableHttps');
-      if (process.env.NODE_ENV != 'production') {
+      if (process.env.NODE_ENV !== 'production') {
         throw new Error('SSL certificates are required for production');
       }
     }
