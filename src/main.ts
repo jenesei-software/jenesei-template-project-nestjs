@@ -3,10 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 
-import { AppModule } from '@/app';
+import { AppModule } from '@/app/app.module';
 import { appConfig, httpsConfig, loggerConfig } from '@/app/setup';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const logger = new Logger('Bootstrap');
 
   const httpsOptions = httpsConfig();

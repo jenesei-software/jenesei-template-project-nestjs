@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { AppEnv } from '@/app/env';
-import { envConfig } from '@/app/setup';
+import { AppEnv, envConfig } from '@/app';
+import { Guards, Interceptors } from '@/common';
 import { InfrastructureModules } from '@/infra';
 import { DomainModules } from '@/modules';
 
@@ -12,5 +12,6 @@ import { DomainModules } from '@/modules';
     ...InfrastructureModules,
     ...DomainModules,
   ],
+  providers: [...Interceptors, ...Guards],
 })
 export class AppModule {}

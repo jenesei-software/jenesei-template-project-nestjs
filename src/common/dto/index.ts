@@ -1,2 +1,2 @@
-export * from './response.wrapper';
+export * from './error-response';
 export * from './success-response';

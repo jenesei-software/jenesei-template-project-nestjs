@@ -1,2 +1,2 @@
 export * from './cli-command.decorator';
-export * from './cli-command.interface';
+export * from './response.wrapper';

@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
-
-import { CliCommand, ICliCommand } from '@/modules/cli';
-import { DUMMY_CLI_COMMANDS, DUMMY_TOKEN, IDummyUseCase } from '@/modules/dummy/ports';
+import { CliCommand, ICliCommand } from '@/common';
+import { DUMMY_DI } from '@/modules/dummy/dummy.di';
+import { DUMMY_CLI_COMMANDS, IDummyUseCase } from '@/modules/dummy/ports';
 
 @CliCommand({
   name: DUMMY_CLI_COMMANDS.EXECUTE,
@@ -9,7 +9,7 @@ import { DUMMY_CLI_COMMANDS, DUMMY_TOKEN, IDummyUseCase } from '@/modules/dummy/
 })
 export class DummyCliAdapter implements ICliCommand {
   constructor(
-    @Inject(DUMMY_TOKEN.USE_CASE)
+    @Inject(DUMMY_DI.USE_CASE)
     private readonly useCase: IDummyUseCase,
   ) {}
 

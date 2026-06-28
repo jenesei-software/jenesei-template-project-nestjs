@@ -1,11 +1,11 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-
-import { DUMMY_TOKEN, IDummyPort, IDummyUseCase } from '../ports';
+import { DUMMY_DI } from '@/modules/dummy/dummy.di';
+import { IDummyPort, IDummyUseCase } from '@/modules/dummy/ports';
 
 @Injectable()
 export class DummyService implements IDummyUseCase {
   constructor(
-    @Inject(DUMMY_TOKEN.REPOSITORY)
+    @Inject(DUMMY_DI.REPOSITORY)
     private readonly repo: IDummyPort,
   ) {}
 

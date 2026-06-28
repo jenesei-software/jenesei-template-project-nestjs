@@ -1,7 +1,6 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { DiscoveryService, Reflector } from '@nestjs/core';
-
-import { CLI_COMMAND_METADATA_KEY, CliCommandOptions, ICliCommand } from '@/modules/cli/ports';
+import { CLI_COMMAND_METADATA_KEY, CliCommandOptions, ICliCommand } from '@/common';
 
 @Injectable()
 export class CliCommandRegistryService implements OnModuleInit {

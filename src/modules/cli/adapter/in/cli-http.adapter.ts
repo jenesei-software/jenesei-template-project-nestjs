@@ -1,12 +1,13 @@
-import { Body, Controller, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, NotFoundException, Post, UseGuards } from '@nestjs/common';
 import { ApiExcludeController, ApiTags } from '@nestjs/swagger';
-import { ApiOkResponseWrapped, ObjectResponseDto } from '@/common';
+import { ApiOkResponseWrapped, LocalOnlyGuard, ObjectResponseDto } from '@/common';
 import { CliCommandRegistryService } from '@/modules/cli/domain';
-import { CLI_HTTP_ROUTE } from '@/modules/cli/ports';
+import { CLI_HTTP_ROUTE } from './cli-http.routes';
 import { ExecuteCommandDto } from './dto';
 
 @ApiTags('CLI')
 @ApiExcludeController()
+@UseGuards(LocalOnlyGuard)
 @Controller(CLI_HTTP_ROUTE.BASE)
 export class CliHttpAdapter {
   constructor(private readonly registry: CliCommandRegistryService) {}

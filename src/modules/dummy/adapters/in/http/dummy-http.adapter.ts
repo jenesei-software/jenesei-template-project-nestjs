@@ -1,7 +1,7 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-
-import { IDummyUseCase } from '@/modules/dummy';
-import { DUMMY_HTTP_ROUTES, DUMMY_TOKEN } from '@/modules/dummy/ports';
+import { ApiOkResponseWrapped } from '@/common';
+import { DUMMY_TOKEN, IDummyUseCase } from '@/modules/dummy';
+import { DUMMY_HTTP_ROUTES } from '@/modules/dummy/ports';
 
 @Controller(DUMMY_HTTP_ROUTES.BASE)
 export class DummyHttpAdapter {
@@ -10,11 +10,9 @@ export class DummyHttpAdapter {
     private readonly useCase: IDummyUseCase,
   ) {}
 
+  @ApiOkResponseWrapped()
   @Get()
-  public async get(): Promise<{ ok: boolean }> {
+  public async get(): Promise<void> {
     await this.useCase.execute();
-    return {
-      ok: true,
-    };
   }
 }

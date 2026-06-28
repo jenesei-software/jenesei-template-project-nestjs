@@ -1,0 +1,4 @@
+export const DUMMY_DI = {
+  REPOSITORY: 'DUMMY_DI_REPOSITORY',
+  USE_CASE: 'DUMMY_DI_USE_CASE',
+};
